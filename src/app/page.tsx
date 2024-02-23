@@ -1,25 +1,15 @@
-'use client'
+
 import { useState, useEffect } from 'react';
-import TaskList from '../components/TaskList';
-import TaskForm from '../components/TaskForm';
-import AddTask from '@/components/AddTask';
+import TaskList from '../../components/TaskList';
+import TaskForm from '../../components/TaskForm';
+import AddTask from '../../components/AddTask';
 import { getAllTasks } from '@/api';
 
-export default function TodoPage() {
-  const [tasks, setTasks] = useState([]);
+export default async function Home() {
+  const tasks = await getAllTasks();
+  console.log(tasks);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const tasksData = await getAllTasks();
-        setTasks(tasksData);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
 
   return (
     <main className='max-w-4xl mx-auto bg-amber-700 mt-4 mb-4'>
@@ -28,9 +18,9 @@ export default function TodoPage() {
           Task List
         </h1>
         <AddTask />
-        <TaskList tasks={tasks} />
-        <TaskForm />
+        <TaskList tasks={tasks}/>
       </div>
     </main>
   );
 }
+
