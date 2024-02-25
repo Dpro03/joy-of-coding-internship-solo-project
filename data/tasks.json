@@ -2,7 +2,8 @@
   "tasks": [
     {
       "id": "2",
-      "text": "Wash the car"
+      "text": "Wash the car!",
+      "title": ""
     },
     {
       "id": "3",
@@ -16,42 +17,13 @@
     },
     {
       "id": "5",
-      "text": "Meeting at 5pm",
+      "text": "Meeting at 5pm at the airport!",
       "title": ""
     },
     {
-      "id": "0.12135199814392905",
-      "text": "her",
+      "id": "0.7128523923030134",
+      "text": "Go to work!",
       "title": ""
-    },
-    {
-      "id": "0.5094061375262315",
-      "text": "he",
-      "title": ""
-    },
-    {
-      "id": "0.9184442117838931",
-      "text": "hh",
-      "title": ""
-    },
-    {
-      "id": "0.9775331706204149",
-      "text": "hhh",
-      "title": ""
-    },
-    {
-      "id": "0.505287305361773",
-      "text": "fjb",
-      "title": ""
-    },
-    {
-      "id": "0.9685274938587183",
-      "text": "yo",
-      "title": ""
-    },
-    {
-      "id": "1",
-      "text": "Get some Br"
     }
   ]
 }

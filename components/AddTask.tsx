@@ -28,7 +28,7 @@ const AddTask = () => {
     <div>
       <button
         onClick={() => setModalOpen(true)}
-        className='btn btn-primary w-full'
+        className='btn btn-light w-full'
       >
         Add new task <AiOutlinePlus className='ml-2' size={18} />
       </button>
