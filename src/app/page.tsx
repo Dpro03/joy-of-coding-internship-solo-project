@@ -12,7 +12,7 @@ export default async function Home() {
 
 
   return (
-    <main className='max-w-4xl mx-auto bg-amber-700 mt-4 mb-4'>
+    <main className='max-w-4xl mx-auto bg-slate-500 mt-4 mb-4'>
       <div>
         <h1 className='text-center underline text text-3xl my-5 flex flex-col gap-4 font-bold'>
           Task List
