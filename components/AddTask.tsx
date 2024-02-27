@@ -10,16 +10,27 @@ const AddTask = () => {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newTaskValue, setNewTaskValue] = useState<string>("");
+  const [taskDescription, setTaskDescription] = useState<string>(""); // New state for task description
+  const [taskTimeline, setTaskTimeline] = useState<string>(""); // New state for task timeline
+  const [taskStatus, setTaskStatus] = useState<string>(""); // New state for task status
 
   const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     console.log(newTaskValue);
+    // Updated AddTodo function call to include description and timeline
     await AddTodo({
       id: Math.random().toString(),
       text: newTaskValue,
-      title: ""
+      title: "",
+      description: taskDescription,
+      timeline: taskTimeline,
+      status: taskStatus
+      
     });
     setNewTaskValue("");
+    setTaskDescription(""); // Clear task description after submission
+    setTaskTimeline(""); // Clear task timeline after submission
+    setTaskStatus(""); // Clear task status after submission
     setModalOpen(false);
     router.refresh();
   };
@@ -44,6 +55,20 @@ const AddTask = () => {
               placeholder='Type your task here'
               className='input input-bordered w-full'
             />
+            <input
+              value={taskTimeline}
+              onChange={(e) => setTaskTimeline(e.target.value)}
+              type='text'
+              placeholder='Task timeline'
+              className='input input-bordered w-full mt-2'
+            />
+            <input
+              value={taskStatus}
+              onChange={(e) => setTaskStatus(e.target.value)}
+              type='text'
+              placeholder='Task status'
+              className='input input-bordered w-full mt-2'
+            />
             <button type='submit' className='btn'>
               Submit
             </button>
@@ -55,7 +80,3 @@ const AddTask = () => {
 };
 
 export default AddTask;
-
-// function AddTodo(arg0: { id: any; text: string; }) {
-//   throw new Error("Function not implemented.");
-// }

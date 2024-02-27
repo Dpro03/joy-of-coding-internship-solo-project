@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { ITask } from '../types/tasks';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 import Modal from './Modal';
-import { editTodo, deleteTodo } from '../api'; // Assuming deleteTodo is also imported from api.ts
-import { useRouter } from 'next/navigation'; // Changed next/navigation to next/router
+import { editTodo, deleteTodo } from '../api'; 
+import { useRouter } from 'next/navigation'; 
 
 interface TaskProps {
   task: ITask;
@@ -13,15 +13,19 @@ interface TaskProps {
 const Task: React.FC<TaskProps> = ({ task }) => {
   const router = useRouter();
   const [openModalEdit, setOpenModalEdit] = useState<boolean>(false);
-  const [openModalDeleted, setOpenModalDeleted] = useState<boolean>(false); // Added state for delete modal
-  const [taskToEdit, setTaskToEdit] = useState<string>(task.text);
+  const [openModalDeleted, setOpenModalDeleted] = useState<boolean>(false); 
+  const [taskToEdit, setTaskToEdit] = useState<string>(task.text ? task.text.toString() : '');
+  const [taskTimeline, setTaskTimeline] = useState<string>(task.timeline || ''); 
+  const [taskStatus, setTaskStatus] = useState<string>(task.status || ''); 
 
   const handleSubmitEditTodo: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     await editTodo({
       id: task.id,
       text: taskToEdit,
-      title: ''
+      title: '',
+      timeline: taskTimeline, 
+      status: taskStatus 
     });
     setOpenModalEdit(false);
     router.refresh();
@@ -36,6 +40,9 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   return (
     <tr key={task.id}>
       <td className='w-full'>{task.text}</td>
+      {/* Add task timeline and status here */}
+      <td>{task.timeline}</td>
+      <td>{task.status}</td>
       <td className='flex gap-12'>
         <FiEdit
           onClick={() => setOpenModalEdit(true)}
@@ -52,6 +59,21 @@ const Task: React.FC<TaskProps> = ({ task }) => {
                 type='text'
                 placeholder='Type your task here'
                 className='input input-bordered w-full'
+              />
+              {/* Add input fields for task timeline and status */}
+              <input
+                value={taskTimeline}
+                onChange={(e) => setTaskTimeline(e.target.value)}
+                type='text'
+                placeholder='Task timeline'
+                className='input input-bordered w-full mt-2'
+              />
+              <input
+                value={taskStatus}
+                onChange={(e) => setTaskStatus(e.target.value)}
+                type='text'
+                placeholder='Task status'
+                className='input input-bordered w-full mt-2'
               />
               <button type='submit' className='btn'>
                 Submit

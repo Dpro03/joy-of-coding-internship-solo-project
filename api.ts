@@ -21,13 +21,14 @@ export const AddTodo = async (todo: ITask): Promise<ITask> => {
 }
 
 export const editTodo = async (todo: ITask): Promise<ITask> => {
-  const res = await fetch(`${baseUrl}/tasks/${todo.id}`, {
+  const { id, timeline, status, ...rest } = todo; // Destructure description and timeline, and spread the rest of the properties
+  const res = await fetch(`${baseUrl}/tasks/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(todo)
-  })
+    body: JSON.stringify({ ...rest, timeline, status }) // Spread rest, and add timeline and status explicitly
+  });
   const updatedTodo = await res.json();
   return updatedTodo;
 }
@@ -37,3 +38,4 @@ export const deleteTodo = async (id: string): Promise<void> => {
     method: 'DELETE',
   })
 }
+
