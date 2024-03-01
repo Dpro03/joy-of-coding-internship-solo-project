@@ -40,13 +40,12 @@ const Task: React.FC<TaskProps> = ({ task }) => {
   return (
     <tr key={task.id}>
       <td className='w-full'>{task.text}</td>
-      {/* Add task timeline and status here */}
       <td>{task.timeline}</td>
       <td>{task.status}</td>
       <td className='flex gap-12'>
         <FiEdit
           onClick={() => setOpenModalEdit(true)}
-          className='text-yellow-300 cursor-pointer'
+          className='text-yellow-400 cursor-pointer hover:text-orange-500'
           size={20}
         />
         <Modal modalOpen={openModalEdit} setModalOpen={setOpenModalEdit}>
@@ -83,7 +82,7 @@ const Task: React.FC<TaskProps> = ({ task }) => {
         </Modal>
         <FiTrash2
           onClick={() => setOpenModalDeleted(true)}
-          className='text-red-500 cursor-pointer'
+          className='text-red-500 cursor-pointer hover:text-rose-500 absolute right-10'
           size={20}
         />
         <Modal modalOpen={openModalDeleted} setModalOpen={setOpenModalDeleted}>

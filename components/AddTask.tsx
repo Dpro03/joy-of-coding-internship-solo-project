@@ -17,7 +17,6 @@ const AddTask = () => {
   const handleSubmitNewTodo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     console.log(newTaskValue);
-    // Updated AddTodo function call to include description and timeline
     await AddTodo({
       id: Math.random().toString(),
       text: newTaskValue,
@@ -28,21 +27,25 @@ const AddTask = () => {
       
     });
     setNewTaskValue("");
-    setTaskDescription(""); // Clear task description after submission
-    setTaskTimeline(""); // Clear task timeline after submission
-    setTaskStatus(""); // Clear task status after submission
+    setTaskDescription(""); 
+    setTaskTimeline(""); 
+    setTaskStatus(""); 
     setModalOpen(false);
     router.refresh();
   };
 
   return (
     <div>
-      <button
-        onClick={() => setModalOpen(true)}
-        className='btn btn-light w-full'
-      >
-        Add new task <AiOutlinePlus className='ml-2' size={18} />
-      </button>
+<div className="flex justify-center">
+  <button
+    onClick={() => setModalOpen(true)}
+    className="bg-pink-800 text-white active:bg-pink-700 font-bold uppercase text-sm px-6 py-3 
+    rounded-xl shadow-md hover:bg-pink-600 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 
+    ease-linear transition-all duration-150 btn btn-light w-1/3 border-2"
+  >
+    Add new task <AiOutlinePlus className="ml-2" size={18} />
+  </button>
+</div>
 
       <Modal modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <form onSubmit={handleSubmitNewTodo}>
